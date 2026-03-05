@@ -4,7 +4,7 @@ fastapi
 uvicorn[standard]
 sqlalchemy
 sentence-transformers
-chromadb
-pydantic
-pydantic-settings
+chromadb==0.6.3
+pydantic>=2.0,<3.0
+pydantic-settings>=2.0
 torch
