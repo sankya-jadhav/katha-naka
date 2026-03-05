@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+sqlalchemy
+geoalchemy2
+sentence-transformers
+chromadb
+pydantic
+pydantic-settings
