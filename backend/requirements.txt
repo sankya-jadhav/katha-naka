@@ -1,8 +1,12 @@
+# ── Force CPU-only PyTorch build (avoids 2.5 GB of CUDA/NVIDIA downloads on Render free tier) ──
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
-geoalchemy2
 sentence-transformers
 chromadb
 pydantic
 pydantic-settings
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
