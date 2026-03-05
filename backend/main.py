@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 import math
 import models, database
-from nlp_service import nlp_layer
 
 app = FastAPI(title="Katha-Naka API")
 
@@ -24,28 +23,42 @@ def _loc_to_dict(loc: models.Location) -> dict:
         "trait":     loc.trait,
         "quotes": [
             {
-                "id":            q.id,
-                "text":          q.text,
-                "author":        q.author,
-                "author_bio":    q.author_bio,
-                "sentiment":     q.sentiment,
+                "id":             q.id,
+                "text":           q.text,
+                "author":         q.author,
+                "author_bio":     q.author_bio,
+                "sentiment":      q.sentiment,
                 "reference_book": q.reference_book,
             }
             for q in loc.quotes
         ],
     }
 
+# ── Health check — Render uses this to confirm the server is alive ────────────
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+@app.get("/")
+def home():
+    return {"message": "Welcome to Katha-Naka API"}
+
+# ── Main data endpoint (no NLP needed) ───────────────────────────────────────
 @app.get("/locations")
 def get_locations(db: Session = Depends(database.get_db)):
     return [_loc_to_dict(loc) for loc in db.query(models.Location).all()]
 
-
+# ── Semantic walk — NLP imported ONLY when this endpoint is actually called ───
 @app.get("/generate-walk")
 def generate_walk(
     vibe: str = Query(...),
-    n: int = Query(4, ge=2, le=10),
-    db: Session = Depends(database.get_db),
+    n:    int  = Query(4, ge=2, le=10),
+    db:   Session = Depends(database.get_db),
 ):
+    # Deferred import: sentence-transformers & chromadb are NOT loaded at startup.
+    # They are imported here, on the first real request to this endpoint.
+    from nlp_service import nlp_layer
+
     results   = nlp_layer.find_similar_quotes(vibe, n_results=min(n * 4, 20))
     ids       = results.get("ids", [[]])[0]
     metadatas = results.get("metadatas", [[]])[0]
@@ -83,8 +96,3 @@ def generate_walk(
         ordered.append(nearest)
 
     return [_loc_to_dict(loc) for loc in ordered]
-
-
-@app.get("/")
-def home():
-    return {"message": "Welcome to Katha-Naka API"}
