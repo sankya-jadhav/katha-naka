@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import math
 import models, database
 
+# Create all tables on startup (critical for Render where no .db file is deployed)
+models.Base.metadata.create_all(bind=database.engine)
+
 app = FastAPI(title="Katha-Naka API")
 
 app.add_middleware(
