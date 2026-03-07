@@ -28,7 +28,12 @@
 Built by **Sanket Jadhav**, an MCA student exploring the intersection of culture, NLP, and modern web technology.
 
 ---
+### Home Page
+![Homepage](home.png)
 
+### Interactive Literary Map
+![Mappage](map.png)
+---
 ## ✨ Features
 
 | Feature | Description |
