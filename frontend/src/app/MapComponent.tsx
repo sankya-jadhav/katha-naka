@@ -223,8 +223,7 @@ export default function MapComponent() {
                 maxBounds={PUNE_BOUNDS}
                 maxBoundsViscosity={1.0}
                 scrollWheelZoom={false}   // off by default; enabled after click via controller
-                dragging={true}
-                tap={false}               // prevents ghost clicks on iOS Safari
+                dragging={true}            
                 touchZoom="center"        // pinch-to-zoom anchors at screen centre, not fingers
                 style={{ height: "100%", width: "100%", minHeight: "80vh" }}
             >
