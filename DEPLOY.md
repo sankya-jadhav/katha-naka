@@ -46,8 +46,7 @@ gunicorn main:app \
 ### Set environment variables
 ```bash
 cp .env.production.example .env.production
-# Edit .env.production and set:
-# NEXT_PUBLIC_API_URL=https://katha-naka-api.onrender.com
+# Edit .env.production and set
 ```
 
 ### Build and start
