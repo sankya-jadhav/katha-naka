@@ -17,6 +17,10 @@
 
 ---
 
+🌐 Live Demo: https://katha-naka.vercel.app
+
+---
+
 ## 📖 About
 
 **साहित्याच्या पुणेरी पाट्या** is a location-based Marathi literary map that fuses AI and culture. Every pin on the map represents a real Pune location — Shanivar Wada, Vetal Tekdi, Saras Baug — each holding quotes from iconic Marathi authors like **Pu La Deshpande**, **V. P. Kale**, and **Savitribai Phule**.
