@@ -47,7 +47,7 @@ gunicorn main:app \
 ```bash
 cp .env.production.example .env.production
 # Edit .env.production and set:
-# NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
+# NEXT_PUBLIC_API_URL=https://katha-naka-api.onrender.com
 ```
 
 ### Build and start

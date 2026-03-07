@@ -37,7 +37,7 @@ export default function MapClient({ onPinClick }: { onPinClick: (location: Locat
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:8000/locations')
+        fetch('https://katha-naka-api.onrender.com/locations')
             .then(res => res.json())
             .then(data => {
                 setLocations(data);
