@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Khand } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Primary display font — Devanagari headings
@@ -39,6 +40,7 @@ export default function RootLayout({
       </head>
       <body className={`${khand.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
